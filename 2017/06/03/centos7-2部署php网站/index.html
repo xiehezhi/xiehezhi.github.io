@@ -12,10 +12,12 @@
 <meta property="og:url" content="http://yoursite.com/2017/06/03/centos7-2部署php网站/index.html">
 <meta property="og:site_name" content="Hexo">
 <meta property="og:description" content="linux下Apache+Php+Mysql环境的搭建 1.首先安装mariaDB(mariaDB几乎完全兼容mysql)。 yum install mariadb mariadb-server 2.启动，自启动。 systemctl start mariaDB.service 3.设置数据库root用户和密码 mysql_secure_installation 根据提示设置好数据库root用户">
-<meta property="og:updated_time" content="2017-06-03T12:22:34.515Z">
+<meta property="og:image" content="http://http://pica.nipic.com/2007-10-17/20071017115629502_2.jpg">
+<meta property="og:updated_time" content="2017-06-03T12:28:56.168Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="centos7.2部署php网站">
 <meta name="twitter:description" content="linux下Apache+Php+Mysql环境的搭建 1.首先安装mariaDB(mariaDB几乎完全兼容mysql)。 yum install mariadb mariadb-server 2.启动，自启动。 systemctl start mariaDB.service 3.设置数据库root用户和密码 mysql_secure_installation 根据提示设置好数据库root用户">
+<meta name="twitter:image" content="http://http://pica.nipic.com/2007-10-17/20071017115629502_2.jpg">
   
     <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -108,12 +110,12 @@
 <p><pre><br>Mysql -uroot -p<br>create database db_name DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;<br>mysql-&gt;use db_name;<br>mysql-&gt;set names utf8;<br>mysql-&gt;source mydb.sql;<br>Show tables //查看恢复的表<br>exit //退出mysql命令行:</pre></p>
 <p><font color="#080808" size="5"><strong>7</strong>.防火墙设置</font></p>
 <p><pre><br>vi /etc/selinux/config  //关闭内核防火墙,将SELINUX=enforcing 改成SELINUX=disabled<br>vi /etc/sysconfig/iptables //添加以下2个命令：</pre></p>
-<p>-A INPUT -m state –state NEW -m tcp -p tcp –dport 80 -j ACCEPT<br>-A INPUT -m state –state NEW -m tcp -p tcp –dport 3306 -j ACCEPT<br><strong>出现权限不够时，使用：chmod +R 777 /路径</strong></p>
+<p>-A INPUT -m state –state NEW -m tcp -p tcp –dport 80 -j ACCEPT<br>-A INPUT -m state –state NEW -m tcp -p tcp –dport 3306 -j ACCEPT<br><strong>出现权限不够时，使用：chmod +R 777 /路径</strong><br><img src="http://http://pica.nipic.com/2007-10-17/20071017115629502_2.jpg" alt=""></p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/06/03/centos7-2部署php网站/" data-id="cj3h914qy0000cswdmyyqfr77" class="article-share-link">Partager</a>
+      <a data-url="http://yoursite.com/2017/06/03/centos7-2部署php网站/" data-id="cj3h99e020000lcwdp8azpmzg" class="article-share-link">Partager</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/centos7-2部署php网站/">centos7.2部署php网站</a></li></ul>
