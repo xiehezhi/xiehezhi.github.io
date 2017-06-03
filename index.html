@@ -105,12 +105,12 @@
 <p><pre><br>Mysql -uroot -p<br>create database db_name DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;<br>mysql-&gt;use db_name;<br>mysql-&gt;set names utf8;<br>mysql-&gt;source mydb.sql;<br>Show tables //查看恢复的表<br>exit //退出mysql命令行:</pre></p>
 <p><font color="#080808" size="5"><strong>7</strong>.防火墙设置</font></p>
 <p><pre><br>vi /etc/selinux/config  //关闭内核防火墙,将SELINUX=enforcing 改成SELINUX=disabled<br>vi /etc/sysconfig/iptables //添加以下2个命令：</pre></p>
-<p>-A INPUT -m state –state NEW -m tcp -p tcp –dport 80 -j ACCEPT<br>-A INPUT -m state –state NEW -m tcp -p tcp –dport 3306 -j ACCEPT<br><strong>出现权限不够时，使用：chmod +R 777 /路径</strong><br><img src="https://raw.githubusercontent.com/smshen/MarkdownPhotos/master/Res/test.jpg" alt="Aaron Swartz"></p>
+<p>-A INPUT -m state –state NEW -m tcp -p tcp –dport 80 -j ACCEPT<br>-A INPUT -m state –state NEW -m tcp -p tcp –dport 3306 -j ACCEPT<br><strong>出现权限不够时，使用：chmod +R 777 /路径</strong><br><img src="https://xiehezhi.github.io/picture/1.jpg" alt="xiehezhi"></p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/06/03/centos7-2部署php网站/" data-id="cj3h9pmyy0000dkwd7ubqhun3" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2017/06/03/centos7-2部署php网站/" data-id="cj3ha91h600001kwdg1d224j6" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/centos7-2部署php网站/">centos7.2部署php网站</a></li></ul>
@@ -209,7 +209,7 @@ yum install elfutils-libelf-devel</pre></font></font></font></font></font></font
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/06/03/linuxn内核升级/" data-id="cj3h9pmz60001dkwdhehlsrvk" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2017/06/03/linuxn内核升级/" data-id="cj3ha91hd00011kwdgmapyloq" class="article-share-link">Share</a>
       
       
     </footer>
