@@ -3,14 +3,19 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Hexo</title>
+  <title>centos7.2部署php网站 | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Hexo">
-<meta property="og:url" content="http://yoursite.com/index.html">
+  <meta name="description" content="linux下Apache+Php+Mysql环境的搭建 1.首先安装mariaDB(mariaDB几乎完全兼容mysql)。 yum install mariadb mariadb-server 2.启动，自启动。 systemctl start mariaDB.service 3.设置数据库root用户和密码 mysql_secure_installation 根据提示设置好数据库root用户">
+<meta name="keywords" content="centos7.2部署php网站">
+<meta property="og:type" content="article">
+<meta property="og:title" content="centos7.2部署php网站">
+<meta property="og:url" content="http://yoursite.com/2017/06/03/centos7-2部署php网站/index.html">
 <meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="linux下Apache+Php+Mysql环境的搭建 1.首先安装mariaDB(mariaDB几乎完全兼容mysql)。 yum install mariadb mariadb-server 2.启动，自启动。 systemctl start mariaDB.service 3.设置数据库root用户和密码 mysql_secure_installation 根据提示设置好数据库root用户">
+<meta property="og:updated_time" content="2017-06-03T12:21:32.644Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Hexo">
+<meta name="twitter:title" content="centos7.2部署php网站">
+<meta name="twitter:description" content="linux下Apache+Php+Mysql环境的搭建 1.首先安装mariaDB(mariaDB几乎完全兼容mysql)。 yum install mariadb mariadb-server 2.启动，自启动。 systemctl start mariaDB.service 3.设置数据库root用户和密码 mysql_secure_installation 根据提示设置好数据库root用户">
   
     <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -59,9 +64,7 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main">
-  
-    <article id="post-centos7-2部署php网站" class="article article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-centos7-2部署php网站" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2017/06/03/centos7-2部署php网站/" class="article-date">
   <time datetime="2017-06-03T11:39:37.000Z" itemprop="datePublished">2017-06-03</time>
@@ -74,8 +77,8 @@
       <header class="article-header">
         
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/06/03/centos7-2部署php网站/">centos7.2部署php网站</a>
+    <h1 class="article-title" itemprop="name">
+      centos7.2部署php网站
     </h1>
   
 
@@ -118,107 +121,19 @@
     </footer>
   </div>
   
-</article>
-
-
+    
+<nav id="article-nav">
   
-    <article id="post-linuxn内核升级" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2017/06/03/linuxn内核升级/" class="article-date">
-  <time datetime="2017-06-03T02:51:08.000Z" itemprop="datePublished">2017-06-03</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/06/03/linuxn内核升级/">CentOS替换更新源及Linux内核编译</a>
-    </h1>
+    <a href="/2017/06/03/linuxn内核升级/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">CentOS替换更新源及Linux内核编译</div>
+    </a>
   
+</nav>
 
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><font color="#cd0000" size="5">1.<font color="080808" size="3">在www.kernel.org官网下载所需版本的内核文件,一般为tar.xz格式。</font></font></p>
-<p>&emsp;用xshell连接linux主机，或登录linux主机</p>
-<p><font color="080808" size="3">解压内核文件</font></p>
-<pre>
-&emsp;xz -dk linux-x.xx.x.tar.xz
-</pre>
-<font color="080808" size="3">*如果提示xz not found，请帮yum换源，再用yum install xz安装.
----
-<font color="#cd0000" size="5">2.<font color="#080808" size="3">进入刚得到的文件夹
-<pre>
-cd linux-3.19.3
-</pre>
-<font color="#cd0000" size="5">3.<font color="#080808" size="3">使用yum安装编译需要的编译环境
-<pre>
-yum install -y gcc make bison ncurses-devel rpm-build
-</pre>
-<font color="#cd0000" size="5">4.<font color="#080808" size="3">复制现有内核编译的配置文件
-<pre>
-cp /boot/config-`uname -r` .config
-</pre><pre>
-<font color="#cd0000" size="3">*如果想使用旧内核配置，并自动接收每个新增选项的默认设置
-<pre>
-sh -c 'yes "" | make oldconfig'
-</pre></font></pre>
-<font color="#cd0000" size="5">5.<font color="#080808" size="3">进入菜单配置
-<pre>
-make menuconfig
-</pre>
-根据需求，设置选项“[ ] 64-bit kernel” 是否选择，按‘y’选择，‘n’取消<pre>
-进入General setup, 勾选 “Enable deprected sysfs features to support old userspace tools”
-生成内核文件，通常生成在/usr/src/arch/x86/boot目录下
-</pre>
-<font color="#cd0000" size="5">6.<font color="#080808" size="3">编译内核模块<pre>make bzImage</pre>
-<font color="#cd0000" size="5">7.<font color="#080808" size="3">安装新内核模块<pre>make modules</pre>
-<font color="#cd0000" size="5">8.<font color="#080808" size="3">把它们放到相应的位置<pre>
-make modules_install
-</pre>
-<pre>
-<font color="#cd0000" size="5">***<font color="#080808">上面三步也可以写成这样：
-<pre>
-make bzImage && make modules && make modules_install
-</pre></font></font></pre>
-<font color="#cd0000" size="5">9.<font color="#080808" size="3">安装内核<pre>
-make install
-</pre>
-<font color="#cd0000" size="5">10.<font color="#080808" size="3">设置系统引导管理器，以便从新的内核启动<pre>
-vi /etc/grub.conf   </pre>
-//将default=1改为default=0,保存退出
-
-<font color="cd0000" size="3">11.<font color="#080808" size="3">最后重启系统<pre>
-reboot</pre>
-验证内核版本<pre>
-uname -a
-</pre>
-<font color="#cd0000" size="3">！！！<font color="#080808" size="3"><pre>以上任一编译过程出现错误需重新编译！！！
-先执行！清除安装过程中的临时文件</pre>
-<pre>make mrproper
-//make clean</pre>
-并再重复编译步骤。
-<pre>
-yum install openssl–devel
-yum install elfutils-libelf-devel</pre></font></font></font></font></font></font></font></font></font></font></font></font></font></font></font></font></font></font></font></font></font></font></font>
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/06/03/linuxn内核升级/" data-id="cj3h8t7w10000okwdcoh9vqk8" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
   
 </article>
-
-
-  
 
 </section>
         
