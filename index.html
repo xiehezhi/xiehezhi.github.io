@@ -48,9 +48,9 @@
       </nav>
       <nav id="sub-nav">
         
-          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="Flux RSS"></a>
         
-        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+        <a id="nav-search-btn" class="nav-icon" title="Rechercher"></a>
       </nav>
       <div id="search-form-wrap">
         <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
@@ -61,10 +61,10 @@
       <div class="outer">
         <section id="main">
   
-    <article id="post-hello-world" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-linuxn内核升级" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2017/06/03/hello-world/" class="article-date">
-  <time datetime="2017-06-03T02:27:44.685Z" itemprop="datePublished">2017-06-03</time>
+    <a href="/2017/06/03/linuxn内核升级/" class="article-date">
+  <time datetime="2017-06-03T02:51:08.000Z" itemprop="datePublished">2017-06-03</time>
 </a>
     
   </div>
@@ -75,7 +75,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2017/06/03/hello-world/">Hello World</a>
+      <a class="article-title" href="/2017/06/03/linuxn内核升级/">CentOS替换更新源及Linux内核编译</a>
     </h1>
   
 
@@ -83,20 +83,72 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo new <span class="string">"My New Post"</span></div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo server</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo generate</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo deploy</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
+        <p><font color="#cd0000" size="5">1.<font color="080808" size="3">在www.kernel.org官网下载所需版本的内核文件,一般为tar.xz格式。</font></font></p>
+<p>&emsp;用xshell连接linux主机，或登录linux主机</p>
+<p><font color="080808" size="3">解压内核文件</font></p>
+<pre>
+&emsp;xz -dk linux-x.xx.x.tar.xz
+</pre>
+<font color="080808" size="3">*如果提示xz not found，请帮yum换源，再用yum install xz安装.
+---
+<font color="#cd0000" size="5">2.<font color="#080808" size="3">进入刚得到的文件夹
+<pre>
+cd linux-3.19.3
+</pre>
+<font color="#cd0000" size="5">3.<font color="#080808" size="3">使用yum安装编译需要的编译环境
+<pre>
+yum install -y gcc make bison ncurses-devel rpm-build
+</pre>
+<font color="#cd0000" size="5">4.<font color="#080808" size="3">复制现有内核编译的配置文件
+<pre>
+cp /boot/config-`uname -r` .config
+</pre><pre>
+<font color="#cd0000" size="3">*如果想使用旧内核配置，并自动接收每个新增选项的默认设置
+<pre>
+sh -c 'yes "" | make oldconfig'
+</pre></font></pre>
+<font color="#cd0000" size="5">5.<font color="#080808" size="3">进入菜单配置
+<pre>
+make menuconfig
+</pre>
+根据需求，设置选项“[ ] 64-bit kernel” 是否选择，按‘y’选择，‘n’取消<pre>
+进入General setup, 勾选 “Enable deprected sysfs features to support old userspace tools”
+生成内核文件，通常生成在/usr/src/arch/x86/boot目录下
+</pre>
+<font color="#cd0000" size="5">6.<font color="#080808" size="3">编译内核模块<pre>make bzImage</pre>
+<font color="#cd0000" size="5">7.<font color="#080808" size="3">安装新内核模块<pre>make modules</pre>
+<font color="#cd0000" size="5">8.<font color="#080808" size="3">把它们放到相应的位置<pre>
+make modules_install
+</pre>
+<pre>
+<font color="#cd0000" size="5">***<font color="#080808">上面三步也可以写成这样：
+<pre>
+make bzImage && make modules && make modules_install
+</pre></font></font></pre>
+<font color="#cd0000" size="5">9.<font color="#080808" size="3">安装内核<pre>
+make install
+</pre>
+<font color="#cd0000" size="5">10.<font color="#080808" size="3">设置系统引导管理器，以便从新的内核启动<pre>
+vi /etc/grub.conf   </pre>
+//将default=1改为default=0,保存退出
 
+<font color="cd0000" size="3">11.<font color="#080808" size="3">最后重启系统<pre>
+reboot</pre>
+验证内核版本<pre>
+uname -a
+</pre>
+<font color="#cd0000" size="3">！！！<font color="#080808" size="3"><pre>以上任一编译过程出现错误需重新编译！！！
+先执行！清除安装过程中的临时文件</pre>
+<pre>make mrproper
+//make clean</pre>
+并再重复编译步骤。
+<pre>
+yum install openssl–devel
+yum install elfutils-libelf-devel</pre></font></font></font></font></font></font></font></font></font></font></font></font></font></font></font></font></font></font></font></font></font></font></font>
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/06/03/hello-world/" data-id="cj3gqsti1000078wd1biulb63" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2017/06/03/linuxn内核升级/" data-id="cj3gqv9hn0000e0wdojumaod8" class="article-share-link">Partager</a>
       
       
     </footer>
@@ -131,12 +183,12 @@
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title">Recent Posts</h3>
+    <h3 class="widget-title">Articles récents</h3>
     <div class="widget">
       <ul>
         
           <li>
-            <a href="/2017/06/03/hello-world/">Hello World</a>
+            <a href="/2017/06/03/linuxn内核升级/">CentOS替换更新源及Linux内核编译</a>
           </li>
         
       </ul>
@@ -152,7 +204,7 @@
   <div class="outer">
     <div id="footer-info" class="inner">
       &copy; 2017 John Doe<br>
-      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+      Propulsé by <a href="http://hexo.io/" target="_blank">Hexo</a>
     </div>
   </div>
 </footer>
